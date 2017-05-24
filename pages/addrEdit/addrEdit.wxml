@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="errorMsg" hidden="{{isError}}">{{errorMsg}}</view>
+  <view class="info-list postman">
+    <text>收货人</text>
+    <input placeholder="请输入收货人姓名" placeholder-style="color:#ddd" value="{{consignee}}" bindinput="consigneeFn" />
+  </view>
+  <view class="info-list">
+    <text>联系电话</text>
+    <input placeholder="请输入收货人的联系电话" type="number" placeholder-style="color:#ddd" value="{{mob}}" bindinput="mobFn" />
+  </view>
+  <view class="province info-addr">
+    <view class="provincetxt">省/直辖市</view>
+    <picker value="{{pIndex}}" range="{{provinceData}}" range-key="name" bindchange="provinceFn" mode="selector" disabled="{{isProvince}}">
+      <view class="provinces" style="{{provinceColor}}">{{provinceName}}</view>
+    </picker>
+  </view>
+    <view class="city info-addr">
+    <view class="provincetxt">城市</view>
+    <picker value="{{pIndex}}" range="{{cityData}}" range-key="name" bindchange="cityFn" mode="selector" disabled="{{isCity}}">
+      <view class="provinces" style="{{cityColor}}">{{cityName}}</view>
+    </picker>
+  </view>
+    <view class="area info-addr">
+    <view class="provincetxt">地区</view>
+    <picker value="{{pIndex}}" range="{{areaData}}" range-key="name" bindchange="areaFn" mode="selector" disabled="{{isArea}}">
+      <view class="provinces" style="{{areaColor}}">{{areaName}}</view>
+    </picker>
+  </view>
+
+  <!--<view class="section">
+    <view class="section__title">地区选择器</view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        当前选择：{{array[index]}}
+      </view>
+    </picker>
+  </view>-->
+  <view class="info-list">
+    <text>详细地址</text>
+    <input placeholder="请输入收货人的详细地址" placeholder-style="color:#ddd" value="{{address}}" bindinput="addressFn" />
+  </view>
+  <view class="info-list">
+    <text>设为默认地址</text>
+    <switch checked="{{isDefault == 1 ? true : ''}}" class="addrDefault" bindchange="isDefaultFn" />
+  </view>
+  <button class="seve-btn" bindtap="editAddrFn" hidden="{{isAdd}}">保存并使用</button>
+  <button class="seve-btn" bindtap="addAddrFn" hidden="{{!isAdd}}">保存并使用</button>
+  <button class="seve-btn remove-btn" bindtap="removeAddrFn" hidden="{{isAdd}}">删除该地址</button>
+</view>

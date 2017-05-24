@@ -1,0 +1,103 @@
+
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="container">
+
+  <!--订单生成后电话-->
+  <view class="telephone" hidden="{{!isPay}}">
+    <view class="tel-logo" bindtap="phone"></view>
+    <view class="tel-content">
+      <text class="contact ellipsis">订单已生成，请您尽快与商家联系！<text hidden="{{isContact}}">联系方式：</text></text>
+      <text class="traderName">{{contactname}}</text>
+      <text class="traderMob">{{orderDetailData.mob}}</text>
+    </view>
+  </view>
+
+  <!--具体地址-->
+  <view class="specific-addr">
+    <view class="add-logo"></view>
+    <view class="receiver-content">
+      <text class="contactName">{{orderDetailData.consignee}}</text>
+      <text class="contactMob">{{orderDetailData.mob}}</text>
+      <text class="contactAddr ellipsis">{{orderDetailData.address}}</text>
+    </view>
+  </view>
+
+  <!--订单商品详情-->
+  <!--<view wx:for="{{itemsData}}" wx:key="i">
+    <view class="shop-detail">
+      <view class="shop-img">
+        <image src="{{imgPath}}{{item.img?item.img:item.defauliImg}}" />
+      </view>
+      <view class="shop-content">
+        <text class="shop-name ellipsis">{{item.itemName}}</text>
+        <text class="company-name ellipsis">由 {{companyData.name}} 提供发货和售后服务</text>
+        <view class="shopdetail">
+          <text class="spec ellipsis">{{item.norm}} x{{item.qty}}</text>
+          <text class="shopprice">¥ {{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>-->
+  <view class="shop-detail" wx:for="{{itemsData}}" wx:key="i">
+
+    <!--<image src="{{imgPath}}{{item.img?item.img:item.defauliImg}}" />-->
+    <image src="../../images/list1.jpg" bindtap="orderDetailFn"></image>
+    <view class="info-wrap">
+      <text class="tit ellipsis">{{item.itemName}}</text>
+      <text class="company-name ellipsis">由 {{companyData.name}} 提供发货和售后服务</text>
+      <view class="price-info">
+        <text>{{item.norm}} x{{item.qty}}</text>
+        <text class="price">¥ {{item.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!--商品的总额和运费-->
+  <view class="coast">
+    <view class="total-fee">
+      <text class="shop-coast">商品金额</text>
+      <text class="shop-fee">¥{{shopprice}}</text>
+    </view>
+    <view class="freight">
+      <text class="freight-txt">运费</text>
+      <text class="freight-fee">+¥{{freightfee}}</text>
+    </view>
+    <view class="full-cut">
+      <text class="cut-txt">满减</text>
+      <text class="cut-fee">-¥{{cutfee}}</text>
+    </view>
+    <view class="full-folding">
+      <text class="folding-txt">满折</text>
+      <text class="folding-fee">-¥{{foldingfee}}</text>
+    </view>
+  </view>
+
+  <!--商品的总额+运费-->
+  <view class="total">
+    <text class="total-txt">合计</text>
+    <text class="total-fee">¥{{totalfee}}</text>
+  </view>
+
+  <!--支付方式-->
+  <view class="pay-way">
+    <text class="pay-txt">支付方式</text>
+    <text class="pay-wx">微信支付</text>
+  </view>
+
+  <!--订单编号-->
+  <view class="order-card">
+    <text class="card-txt">订单编号</text>
+    <text class="card-id">{{orderId}}</text>
+  </view>
+
+  <!--订单时间-->
+  <view class="order-time">
+    <text class="time-txt">下单时间</text>
+    <text class="time-id">{{timeStamp}}</text>
+  </view>
+
+  <!--选择按钮-->
+  <button class="pay-btn" hidden="{{!ispaid}}" data-orderId="{{orderDetailData.id}}">立即支付</button>
+  <button class="refer-btn" hidden="{{!ispaid}}" data-orderId="{{orderDetailData.id}}" bindtap="cancleFn">取消订单</button>
+  <button class="refer-btn" hidden="{{ispaid}}" data-orderId="{{orderDetailData.id}}" bindtap="cancleFn">取消订单</button>
+</view>

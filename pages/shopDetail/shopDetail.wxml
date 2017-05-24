@@ -1,0 +1,137 @@
+
+<!--pages/shopDetail/shopDetail.wxml-->
+
+<view class="container"> 
+  <!--轮播-->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="banner" circular="{{circular}}">
+    <block wx:for="{{imgUrls}}" wx:key="i">
+      <swiper-item>
+        <image src="{{item.url}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!--商品详情-->
+  <view class="shopDetail">
+    <view class="shop-detail">
+      <text class="shop-name ellipsis">{{goodsData.onlineTitle}}{{goodsData.name}}</text>
+      <text class="company-name ellipsis">由 {{goodsData.companyName}} 提供发货和售后服务</text>
+      <text class="shop-price ellipsis">¥<text>{{shopprice}}</text> 起</text>
+    </view>
+    <view class="bargin" bindtap="bargainFn"></view>
+  </view>
+  <view class="spec">
+    <text class="sp">规<text class="zojian"></text>格</text>
+    <view class="rule">
+      <text class="{{currentid==item.id ? 'choose':''}}" wx:for="{{goodsData.itemSkus}}" wx:key="i" data-id="{{item.id}}" bindtap="specFn">{{item.norm}}</text>
+    </view>
+  </view>
+
+  <!--数量-->
+  <view class="shop-number">
+    <text class="number">数<text class="zojian"></text>量</text>
+    <view class="operation">
+      <text class="decr-btn" bindtap="decrFn">-</text>
+      <input class="operation-result" type="number" bindinput="goodsNumFn" value="{{moq==0 ? '1':moq}}" placeholder="1" />
+      <text hover-class="hover" class="incr-btn" bindtap="incrFn">+</text>
+    </view>
+  </view>
+
+  <!--结算-->
+  <view class="balance">
+    <view class="shopping-car" data-skuid="{{skuId}}" bindtap="addcarFn">加入购物车</view>
+    <view class="purchase" bindtap="boughtFn">立即购买</view>
+  </view>
+
+  <!--服务商选择-->
+  <view class="select-service">
+    <view class="choice">选择服务商</view>
+    <view class="company">{{company}}</view>
+    <view class="jiantou"></view>
+  </view>
+
+  <!--产品描述-->
+  <view class="pddeion">
+    <view class="ption">
+      <text class="region-txt">适应区域</text>
+      <text class="indition-txt">{{goodsData. adapRegion}}</text>
+    </view>
+    <view class="add"  hidden="{{isOver}}">
+      <text class="recive">送<text class="zojian"></text>至</text>
+      <text class="addt">{{addr}}</text>
+    </view>
+  </view>
+
+  <!--审认编号-->
+  <view class="approval">
+    <text class="approval-txt">审/认编号</text>
+    <view class="grade">
+      <text class="grade-nunber" wx:for="{{goodsData.itemAuditeds}}" wx:key="i">{{item.auditedNum}}</text>
+    </view>
+  </view>
+
+  <!--产品参数详情-->
+  <view class="canshu">
+ 
+    <view class="chaninfo">
+      <text class="{{selected?'red':''}}" bindtap="swichNavFn">产品参数</text>
+      <text class="{{selected1?'red':''}}" bindtap="introduceFn">商品介绍</text>
+      <text class="{{selected2?'red':''}}" bindtap="ensureFn">售后保障</text>
+    </view>
+     <import src="../../wxParse/wxParse.wxml"/> 
+    <view class="detail">
+      <view class="{{selected?'show':'hidden'}}">
+          <view class="shopinfo" wx:for="{{shopinfo}}" wx:key="i">
+              <text class="shopinfotxt">{{item.displayName}} : {{item.attrValue}} </text>
+          </view>
+      </view>
+      <view class="{{selected1?'show':'hidden'}}">
+ 
+                 <template is="wxParse" data="{{wxParseData:parameterData.nodes}}"/>
+      </view>
+      <view class="{{selected2?'show':'hidden'}}">
+        <view class="good-goods">
+          <view class="tu"></view>
+          <view class="goodtxt">
+            <view class="goodline">正品保障</view>
+            <view class="textline">网站所售产品均为厂家正品，非正品无条件提供退货</view>
+          </view>
+        </view>
+        <view class="good-goods">
+          <view class="tu1"></view>
+          <view class="goodtxt">
+            <view class="goodline">买家必读</view>
+            <view class="textline">因厂家会在没有任何提前通知的情况下更改产品包装、说明，本司不能确保客户收到的货物与商城图片、说明完全一致。只能确保为原厂正货！若本网站没有及时更新，请大家谅解。</view>
+          </view>
+        </view>
+        <view class="good-goods">
+          <view class="tu2"></view>
+          <view class="goodtxt">
+            <view class="goodline">售后政策</view>
+            <view class="textline">以下产品均提供无条件退货:</view>
+            <view class="condition">
+              <view class="ellipsis">①收到的产品与网站宣传不符;</view>
+              <view class="ellipsis">②经检测，产品属于含量，重量等不合格的产品；</view>
+              <view class="ellipsis">③收到产品属于非正规厂家生产.</view>
+            </view>
+          </view>
+        </view>
+        <view class="good-goods">
+          <view class="tu3"></view>
+          <view class="goodtxt">
+            <view class="goodline">退换货处理</view>
+            <view class="textline">产品验货时，如发现产品严重缺失、破损、与所订产品描述不符等问题，可与厂家客服人员联系，如厂家解决结果不合理或者厂家处理态度不积极，客户可以沟通爱种网平台客服，我们会在第一时间跟您沟通处理。</view>
+          </view>
+        </view>
+        <view class="good-goods">
+          <view class="tu4"></view>
+          <view class="goodtxt">
+            <view class="goodline">责任声明</view>
+            <view class="textline">本站产品信息均来自于厂家，其真实性、准确性和合法性由信息拥有者（厂家）负责。本站不提供任何保证，并不承担任何法律责任。</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="kongbai"></view>
+</view>

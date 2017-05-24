@@ -1,0 +1,25 @@
+<view class="container">
+    <view class="shopping-list" wx:for="{{orderData}}" wx:key="i">
+
+      <!--{{item.img ? item.img : item.defauliImg}}-->
+      <image src="../../images/list1.jpg" bindtap="orderDetailFn"></image>
+      <view class="info-wrap">
+        <text class="tit ellipsis">{{item.onlineTitle}}{{item.shopname}}</text>
+        <view class="price-info">
+          <text>{{item.specData}}</text>
+          <text class="price">¥{{item.shopprice}}</text>
+        </view>
+        <view class="operation">
+          <text data-cartid="{{item.skuId}}" class="decr-btn" bindtap="decrFn">-</text>
+          <input class="operation-result" disabled="true" value="{{item.moq==0 ? '1':item.moq}}" type="number" />
+          <text data-cartid="{{item.skuId}}" hover-class="hover" class="incr-btn" bindtap="incrFn">+</text>
+        </view>
+      </view>
+      <text class="del-order" bindtap="removeFn" data-cartid="{{item.id}}"></text>
+    </view>
+
+  <view class="footBar">
+    <view class="totail-price" bindtap="sumcalcFn">合计￥{{totalPrice}}</view>
+    <button type="warn" class="settlement-btn" disabled="{{isOrder}}" bindtap="settlementFn">去结算</button>
+  </view>
+</view>

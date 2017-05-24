@@ -1,0 +1,16 @@
+<view class="container">
+<view class="copupon">
+  <view class="coupons" data-index="{{index}}" wx:for="{{coupon}}" wx:key="i">
+    <view class="discount">
+      <text>¥</text>
+      <text class="quota">{{item.discount}}</text>
+    </view>
+    <view class="term">
+      <text class="date">截止使用日期</text>
+      <text class="time">{{item.useEndTime}}</text>
+      <text class="full">满{{item.fullPrice}}使用</text>
+    </view>-->
+    <view class="draw" bindtap="rightFn" data-id="{{item.id}}"></view>
+  </view>
+  </view>
+</view>

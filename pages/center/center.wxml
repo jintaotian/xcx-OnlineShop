@@ -1,0 +1,9 @@
+<view class="container">
+    <view class="user-head">
+        <image src="{{avatarUrl ? avatarUrl : '../../images/farmer.png'}}"></image>
+    </view>
+    <view class="center-list">
+        <view class="list icon-order" bindtap="myOrderListFn">我的订单</view>
+        <view class="list icon-addr" bindtap="myAddrListFn">地址管理</view>
+    </view>
+</view>

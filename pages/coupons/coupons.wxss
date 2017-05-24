@@ -1,0 +1,113 @@
+/*优惠劵的选择*/
+
+.orderdetail {
+  width: 100%;
+  height: auto;
+}
+page{
+  background:#fff;
+}
+.coupon-choose {
+  width: 100%;
+  height: 200rpx;
+  margin: 20rpx 0rpx;
+  background-color: #fff;
+}
+
+.coupons-con {
+  width: 100%;
+  float: left;
+  height: 100%;
+}
+
+.block {
+  height: 100%;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+
+.coupons {
+  width:600rpx;
+  height: 200rpx;
+  margin-top:30rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWMAAACICAYAAAAyNooUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNjAxQkI0NjNDNjgxMUU3OEE5MEIwRTM2MDRFNDk2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNjAxQkI0NzNDNjgxMUU3OEE5MEIwRTM2MDRFNDk2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjM2MDFCQjQ0M0M2ODExRTc4QTkwQjBFMzYwNEU0OTZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjM2MDFCQjQ1M0M2ODExRTc4QTkwQjBFMzYwNEU0OTZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Ej7TMQAADCdJREFUeNrs3QtwVNUd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') no-repeat center center;
+  background-size: 600rpx 200rpx;
+  text-align: left;
+  color: #e4383b;
+  float: left;
+  overflow: hidden;
+  margin-left: 85rpx;
+  position:relative;
+}
+
+.discount {
+  width: 260rpx;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.discount text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.discount .quota {
+  font-size: 120rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 200rpx;
+}
+.draw{
+    width:92rpx;
+    border-left:1rpx dashed #fff;
+    height:100%;
+    position:absolute;
+    top:0rpx;
+    right:0rpx;
+}
+.term {
+  width: 235rpx;
+  height: 200rpx;
+  float: left;
+  text-align: left;
+}
+
+.term .date {
+  font-size: 30rpx;
+  color: #fff;
+  display: block;
+  width: 100%;
+  height: 72rpx;
+  line-height: 66rpx;
+}
+
+.term .full {
+  font-size: 30rpx;
+  color: #e50338;
+  display: block;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #fff362;
+  font-weight: 600;
+  text-align:center;
+  margin-top:10rpx;
+}
+
+.term .time {
+  font-size: 30rpx;
+  color: #fff;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  height:50rpx;
+}
+
+.coupons .requirement {
+  display: block;
+  font-size: 22rpx;
+  color: #e05d32;
+}

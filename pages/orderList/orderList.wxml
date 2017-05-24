@@ -1,0 +1,92 @@
+<view class="container">
+
+  <!--支持线上时-->
+  <view hidden="{{!isDisplay}}">
+    <view class="order-tabBar">
+      <text class="{{ispaid ? 'on' : ''}}" bindtap="unPaidListFn">未支付</text>
+      <text class="{{ispaid ? '' : 'on'}}" bindtap="paidListFn">已支付</text>
+    </view>
+
+    <!--未支付-->
+    <view class="order-paid" hidden="{{!ispaid}}">
+      <view class="order-list" wx:for="{{listData}}" wx:key="i">
+        <view class="order-head">
+          <text class="order-status">未支付</text>
+          <view class="order-price">
+            共{{item.itemQty}}件 合计：
+            <text class="totail-price">¥{{item.retailPayAmount}}</text>
+          </view>
+        </view>
+        <view class="order-con" wx:for="{{item.items}}" wx:key="i" wx:for-item="list" bindtap="orderDetailFn" data-orderId="{{item.id}}">
+          <!--<image src="{{imgPath}}{{item.img?item.img:item.defauliImg}}"></image>-->
+          <image src="../../images/list1.jpg"></image>
+          <view class="order-info">
+            <text class="order-tit ellipsis">{{list.brand}}{{list.itemName}}</text>
+            <text class="order-pro ellipsis2">由{{item.saleName}}提供发货和售后</text>
+            <view class="peice-wrap">
+              <text class="weight">{{list.norm}}/{{list.units}}</text>
+              <text class="num">x{{list.qty}}</text>
+              <text class="price">¥{{list.price}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="order-work">
+          <text class="conpousTip" hidden="{{isMoney}}">已使用¥{{item.couponDiscount}}优惠券</text>
+          <button class="order-cancle" bindtap="cancleFn" data-orderId="{{item.id}}">取消订单</button>
+          <button class="order-payment" bindtap="placeOrderFn" data-orderId="{{item.id}}">立即支付</button>
+        </view>
+      </view>
+    </view>
+
+    <!--已支付-->
+    <view class="order-unpaid" hidden="{{ispaid}}">
+      <view class="order-list" wx:for="{{unListData}}" wx:key="i">
+        <view class="order-head">
+          <text class="order-status paid-status">已支付</text>
+        </view>
+        <view class="order-con" wx:for="{{item.items}}" data-orderId="{{item.id}}" bindtap="orderDetailFn" wx:key="i" wx:for-item="unList">
+          <image src="../../images/list1.jpg"></image>
+          <view class="order-info">
+            <text class="order-tit ellipsis">{{unList.brand}}{{unList.itemName}}</text>
+            <text class="order-pro ellipsis2">由 {{item.saleName}} 提供发货和售后</text>
+            <view class="peice-wrap">
+              <text class="weight">{{unList.norm}}/{{unList.units}}</text>
+              <text class="num">x{{unList.qty}}</text>
+              <text class="price">¥{{unList.price}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="order-work" hidden="{{isMoney}}">
+          <text class="conpousTip conpousTiped">已使用¥{{item.couponDiscount}}优惠券</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--支持线下时-->
+  <view hidden="{{isDisplay}}">
+    <view class="order-pay" wx:for="{{listData}}" wx:key="i">
+      <view class="title">
+        <view class="total">¥{{item.retailPayAmount}}</view>
+        <view class="ordermoq">共{{item.itemQty}}件 合计:</view>
+      </view>
+      <view class="shop-detail" wx:for="{{item.items}}" wx:key="i" wx:for-item="list" bindtap="orderFn" data-orderId="{{item.id}}">
+        <view class="shop-img">
+          <image src="{{imgPath}}{{item.img?item.img:item.defauliImg}}" />
+        </view>
+        <view class="shop-content">
+          <text class="shop-name ellipsis">{{list.brand}}{{list.itemName}}</text>
+          <text class="company-name ellipsis">由 {{item.saleName}} 提供发货和售后服务</text>
+          <view class="shopdetail">
+            <text class="spec ellipsis">{{list.norm}}/{{list.units}}</text>
+            <text class="shopprice">¥{{list.price}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="order-work">
+        <text class="conpousTip" hidden="{{isMoney}}">已使用¥{{item.couponDiscount}}优惠券</text>
+        <button class="order-cancle" bindtap="cancleFn" data-orderId="{{item.id}}">取消订单</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,104 @@
+<view class="container">
+  <view class="errorTip" class="noPosition" hidden="{{!isPosition}}">
+    <text>请授权当前位置信息</text>
+    <button bindtap="getPositionFn">点击授权</button>
+  </view>
+
+  <!--轮播-->
+  <view hidden="{{isPosition}}">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="banner" circular="{{circular}}" bindtap="orderFn">
+      <block wx:for="{{imgUrls}}" wx:key="i" data-index="index">
+        <swiper-item>
+          <image src="{{item.url}}" bindtap="orderFn" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!--优惠劵-->
+    <view class="coupon-choose" hidden="{{iscoupon}}">
+      <scroll-view class="coupons-con" scroll-x="true">
+        <view class="block" style="width:{{width}}">
+          <view class="coupons" data-index="{{index}}" wx:for="{{coupon}}" wx:key="i" bindtap="drawFn" data-id="{{item.id}}">
+            <view class="discount">
+              <text class="min">¥</text>
+              <text class="quota">{{item.discount}}</text>
+            </view>
+            <view class="term">
+              <text class="date">截止领用日期</text>
+              <text class="time">{{item.endTime}}</text>
+              <text class="full">满{{item.fullPrice}}使用</text>
+            </view>-->
+            <view class="draw" ></view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!--搜索框无内容时-->
+    <view class="search" hidden="{{search}}">
+      <view class="Magnifier"></view>
+      <view class="none"></view>
+      <view class="Magnifier-box">
+        <input class="input" placeholder="点击搜索商品" placeholder-style="color:#cecece" bindfocus="focusFn" value="{{nothing}}" />
+      </view>
+    </view>
+
+    <!--搜索框有内容时-->
+    <view class="search" hidden="{{!search}}">
+      <view class="Magnifier-search"></view>
+      <view class="none"></view>
+      <view class="Magnifier-box">
+        <input class="input-search" placeholder-style="color:#cecece" value="{{searchname}}" bindfocus="searchshopFn" />
+      </view>
+    </view>
+
+    <!--全部商品列表-->
+    <view hidden="{{search}}">
+      <view class="shoplist" wx:for="{{shopsData}}" wx:key="i" bindtap="shopdetailFn" data-index="{{index}}">
+        <view class="img">
+
+          <!--<image src="{{imgPath}}{{item.img?item.img:item.defauliImg}}" />-->
+          <image src="../../images/list1.jpg" bindtap="orderDetailFn"></image>
+        </view>
+        <view class="shopdetail">
+          <text class="shopname ellipsis">【{{item.brand}}】{{item.onlineTitle}}</text>
+          <view class="shopprice ellipsis">¥
+            <text class="price">{{item.price}}</text> 起</view>
+        </view>
+      </view>
+    </view>
+
+    <!--搜索商品列表-->
+    <view hidden="{{!search}}">
+      <view class="shoplist" wx:for="{{seachshopData}}" wx:key="j" bindtap="shopdetailFn" data-index="{{index}}">
+        <view class="img">
+
+          <!--<image src="{{imgPath}}{{item.defauliImg}}" />-->
+          <image src="../../images/list1.jpg" bindtap="orderDetailFn"></image>
+        </view>
+        <view class="shopdetail">
+          <text class="shopname ellipsis">【{{item.brand}}】{{item.onlineTitle}}</text>
+          <text class="shopprice ellipsis">¥
+            <text class="price">{{item.price}}</text> 起</text>
+        </view>
+      </view>
+    </view>
+
+    <!--加载中-->
+    <view class="load" hidden="{{iscome}}">
+      <view class="loadstyle" hidden="{{dot}}">
+        <text class="loadding">加载中</text>
+        <view class="change">
+          <view class="{{dotclass[0]}}"></view>
+          <view class="{{dotclass[1]}}"></view>
+          <view class="{{dotclass[2]}}"></view>
+        </view>
+      </view>
+      <view class="loadover" hidden="{{!dot}}">
+        <view class="left"></view>
+        <text>已经到底了</text>
+        <view class="right"></view>
+      </view>
+    </view>
+  </view>
+</view>
